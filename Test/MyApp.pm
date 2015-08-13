@@ -15,9 +15,17 @@ our @EXPORT     = qw( check_module );
 
 
 sub check_module {
+    my $result = shift;
+
     my $pkg = __PACKAGE__;
     my $dir = Module::Metadata->find_module_dir_by_name($pkg);
-    print "\nHello from $pkg in $dir\n";
+    my $output = "Hello from $pkg in $dir";
+    if (ref $result eq 'SCALAR') {
+        $$result = $output;
+    }
+    else {
+        print "\n$output\n";
+    }
     return;
 }
  
