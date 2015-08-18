@@ -1,0 +1,15 @@
+#!/bin/bash
+
+source .helpers/common.sh
+
+echo
+echo post-checkout hook
+
+git remote update
+
+if git status | grep 'branch is behind' &>/dev/null; then
+    suggest
+fi
+
+exit 0
+

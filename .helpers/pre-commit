@@ -1,0 +1,18 @@
+#!/bin/bash - 
+
+source .helpers/common.sh
+
+echo pre-commit hook
+echo
+
+git remote update
+
+if git status | grep 'branch is behind' &>/dev/null; then
+    suggest
+    echo
+    echo Please fix above before commit
+    exit 1
+fi
+
+exit 0
+
