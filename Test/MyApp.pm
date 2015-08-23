@@ -12,8 +12,8 @@ use Data::Dumper;
 use version; our $VERSION = qv('0.0.1');
 
 our @ISA        = qw(Exporter);
-our @EXPORT_OK  = qw( check_module print_config );
-our @EXPORT     = qw( check_module print_config );
+our @EXPORT_OK  = qw( check_module get_config print_config );
+our @EXPORT     = qw( check_module get_config print_config );
 
 my $CONFIG;
 my $MYAPP_ENV;
@@ -51,5 +51,9 @@ sub print_config {
     my $myapp_config = $CONFIG->{$MYAPP_ENV};
     print Dumper $common_config;
     print Dumper $myapp_config;
+}
+
+sub get_config {
+    return [ $CONFIG->{common}, $CONFIG->{$MYAPP_ENV} ];
 }
  
